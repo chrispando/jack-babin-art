@@ -4,7 +4,7 @@ import App from "../App";
 import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
 import store from "../store";
-import heroImage from "../../public/images/JB_Logo.jpg";
+import heroImage from "../images/JB_Logo.jpg";
 
 function renderApp() {
   ReactDOM.render(
