@@ -4,6 +4,7 @@ import App from "../App";
 import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
 import store from "../store";
+import heroImage from "../../public/images/JB_Logo.jpg";
 
 function renderApp() {
   ReactDOM.render(
@@ -16,7 +17,7 @@ function renderApp() {
 const LandingPage = () => {
   return (
     <div className="landing-page">
-      <img src="/images/JB_Logo.jpg" alt="Logo" className="hero-img" />
+      <img src={heroImage} alt="Logo" className="hero-img" />
       <Button className="render-app-button" onClick={renderApp}>
         Enter
       </Button>
