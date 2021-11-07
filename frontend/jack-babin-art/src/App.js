@@ -18,6 +18,8 @@ import UserEditScreen from "./screens/UserEditScreen";
 import ProductListScreen from "./screens/ProductListScreen";
 import ProductEditScreen from "./screens/ProductEditScreen";
 import OrderListScreen from "./screens/OrderListScreen";
+import AboutScreen from "./screens/AboutScreen";
+import GalleryScreen from "./screens/GalleryScreen";
 
 class App extends React.Component {
   render() {
@@ -30,6 +32,8 @@ class App extends React.Component {
             <Route path="/login" component={LoginScreen} />
             <Route path="/register" component={RegisterScreen} />
             <Route path="/profile" component={ProfileScreen} />
+            <Route path="/about" component={AboutScreen} />
+            <Route path="/gallery" component={GalleryScreen} />
             <Route path="/shipping" component={ShippingScreen} />
             <Route path="/payment" component={PaymentScreen} />
             <Route path="/placeorder" component={PlaceOrderScreen} />

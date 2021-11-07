@@ -31,10 +31,20 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
           </LinkContainer>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
-            <Nav className="ml-auto">
+            <Nav className="ms-auto navbar">
+              <LinkContainer to="/about">
+                <Nav.Link>
+                  <i className="fa fa-user" aria-hidden="true"></i> About
+                </Nav.Link>
+              </LinkContainer>
+              <LinkContainer to="/gallery">
+                <Nav.Link>
+                  <i className="far fa-image" aria-hidden="true"></i> Gallery
+                </Nav.Link>
+              </LinkContainer>
               <LinkContainer to="/cart">
                 <Nav.Link>
-                  <i className="fas fa-shopping-cart"></i>Cart
+                  <i className="fas fa-shopping-cart"></i> Cart
                 </Nav.Link>
               </LinkContainer>
               {userInfo ? (
@@ -49,7 +59,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
               ) : (
                 <LinkContainer to="/login">
                   <Nav.Link>
-                    <i className="fa fa-pencil" aria-hidden="true"></i>Sign In
+                    <i className="fa fa-pencil" aria-hidden="true"></i> Sign In
                   </Nav.Link>
                 </LinkContainer>
               )}

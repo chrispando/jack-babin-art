@@ -45,6 +45,12 @@ h1 {
   font-size: 40px;
 }
 
+.navbar {
+  display: flex;
+  justify-content: right;
+  align-items: right;
+}
+
 .facebook-link {
   font-size: 30px;
   color: #aaa;
