@@ -21,7 +21,6 @@ h1 {
   overflow: hidden;
   background-color: white;
 }
-
 .hero-img {
   width: 50%;
   height: auto;
@@ -49,6 +48,16 @@ h1 {
   display: flex;
   justify-content: right;
   align-items: right;
+}
+
+.imageCarouselClass {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh;
+  justify-content: center;
+  overflow: hidden;
 }
 
 .facebook-link {
