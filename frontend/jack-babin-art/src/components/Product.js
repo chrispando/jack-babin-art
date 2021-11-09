@@ -19,10 +19,6 @@ const Product = ({ product }) => {
         <Card.Text as="div">{product.style}</Card.Text>
         <Card.Text as="div">{product.size}</Card.Text>
         <Card.Text as="h3">${product.price}</Card.Text>
-        <a href={`/addToCart/${product._id}`}>
-          {" "}
-          <Card.Img src="https://www.paypalobjects.com/webstatic/en_US/i/buttons/buy-logo-small.png" />
-        </a>
       </Card.Body>
     </Card>
   );
