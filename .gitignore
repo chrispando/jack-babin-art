@@ -10,7 +10,6 @@
 
 # production
 /frontend/jack-babin-art/build
-/uploads
 
 # misc
 .DS_Store
