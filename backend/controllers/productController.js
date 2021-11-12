@@ -66,14 +66,15 @@ const updateProduct = asyncHandler(async (req, res) => {
   const { name, image, style, size, price, inStock } = req.body;
 
   const product = await Product.findById(req.params.id);
-
+  console.log(product);
   if (product) {
     product.name = name;
-    product.image = image;
+    product.image = "uploads/" + image;
     product.style = style;
     product.size = size;
     product.price = price;
     product.inStock = inStock;
+    console.log("UPDATE PRODUCT: ", product);
     const updatedProduct = await product.save();
     res.json(updatedProduct);
   } else {
