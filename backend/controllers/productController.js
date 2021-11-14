@@ -69,7 +69,7 @@ const updateProduct = asyncHandler(async (req, res) => {
   console.log(product);
   if (product) {
     product.name = name;
-    product.image = "uploads/" + image;
+    product.image = image;
     product.style = style;
     product.size = size;
     product.price = price;
