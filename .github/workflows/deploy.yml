@@ -1,0 +1,73 @@
+name: Jack Babin Art - CI
+
+on:
+  push:
+    branches: [master]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [14.x]
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Make production build
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: "npm"
+      - run: cd frontend/jack-babin-art && npm install
+      - run: cd frontend/jack-babin-art && npm run build
+      - run: cd frontend/jack-babin-art && rm -f -- package-lock.json
+      - run: |
+          git --version
+          git config user.name "Github Action Bot"
+          git config user.email "<>"
+          git stash -u
+      - name: Make Production build and push to production branch
+        uses: actions/checkout@v2
+      - name: Do git stuff
+        run: |
+          git remote update
+          git fetch
+          git checkout production
+          git rm -rf frontend/*
+          git rm -rf backend/*
+          git rm -rf uploads/*
+          git rm -r -- package.json
+          git rm -r -- package-lock.json
+          git stash apply
+          git checkout origin/master -- backend
+          git checkout origin/master -- uploads
+          git checkout origin/master -- package.json
+          git checkout origin/master -- package-lock.json
+          echo "`date` - ${{ github.event.head_commit.id }}" | cat - logs.txt > temp && mv temp logs.txt
+          git status
+          git add .
+          git commit -m "${{ github.event.head_commit.message }}"
+          git push origin production
+  production:
+    needs: build
+    runs-on: self-hosted
+
+    steps:
+      - uses: actions/checkout@v2
+      - run: |
+          git remote update
+          git fetch
+          git checkout production
+          npm install
+      - run: echo " <!--\
+          The MIT License\
+          Copyright (c) 2020 Traversy Media https://traversymedia.com\
+          Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:\
+          The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.\
+          THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.\
+          -->" >> frontend/jack-babin-art/build/index.html
+      - run: npm run format:html
+      - run: cp /home/ubuntu/jack-bibin-art/.env.local /home/ubuntu/jack-bibin-art/_work/jack-babin-art/jack-babin-art/.env
+      - run: pm2 restart jack-babin-art-app
+      - run: echo "All done 🎉"

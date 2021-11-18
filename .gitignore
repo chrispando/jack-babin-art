@@ -9,7 +9,7 @@
 /coverage
 
 # production
-/frontend/jack-babin-art/build
+# /frontend/jack-babin-art/build
 
 # misc
 .DS_Store
